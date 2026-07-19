@@ -15,8 +15,8 @@ export default function HimalayaFinale() {
       <div className="absolute inset-0">
         <ParallaxImage className="w-full h-full" range={70}>
           <Image
-            src="/images/himalaya-sunset.webp"
-            alt="Sunset light over the snow-capped Himalayan range"
+            src="/images/finale-bg.avif"
+            alt="Prayer flags strung above a frozen stream below the snow-capped Himalayan range"
             fill
             sizes="100vw"
             quality={90}
