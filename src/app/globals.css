@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────── */
+:root {
+  --parchment:  #F5EBDD;
+  --sand:       #E9D9C1;
+  --ink:        #201C18;
+  --ink-muted:  #665D54;
+  --saffron:    #C95724;
+  --terracotta: #75361F;
+  --charcoal:   #171613;
+  --gold:       #C49A56;
+
+  /* Typography scale */
+  --font-hero:    clamp(4rem, 11vw, 10rem);
+  --font-title:   clamp(2.25rem, 5.5vw, 4.75rem);
+  --font-heading: clamp(1.5rem, 3vw, 2.25rem);
+  --font-body:    clamp(1rem, 1.1vw, 1.125rem);
+
+  /* Transitions */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Base Reset ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+}
+
+body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Skip Link ─────────────────────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 0.75rem 1.25rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  transition: top 0.2s var(--ease-cinematic);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ─── Focus States ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 87, 36, 0.35);
+  border-radius: 2px;
+}
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(201, 87, 36, 0.25);
+  color: var(--terracotta);
+}
+
+/* ─── Typography Utilities ──────────────────────────────── */
+.font-display { font-family: 'Instrument Serif', serif; }
+.font-sans    { font-family: 'Manrope', sans-serif; }
+
+/* ─── Section Base ──────────────────────────────────────── */
+.section-full {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Rule / Divider ────────────────────────────────────── */
+.rule {
+  width: 48px;
+  height: 1px;
+  background: var(--saffron);
+  opacity: 0.5;
+}
+
+/* ─── Canvas / media protection ─────────────────────────── */
+img, canvas {
+  display: block;
+}
+
+/* ─── Noise Texture Overlay ─────────────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── CTA Buttons ───────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  padding: 16px 36px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--parchment);
+  background: var(--saffron);
+  border: 1px solid var(--saffron);
+  cursor: pointer;
+  transition: background-color 0.35s var(--ease-cinematic), color 0.35s var(--ease-cinematic), border-color 0.35s var(--ease-cinematic);
+}
+.btn-primary:hover {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+}
+
+.btn-secondary {
+  padding: 16px 36px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid rgba(32, 28, 24, 0.3);
+  cursor: pointer;
+  transition: border-color 0.35s var(--ease-cinematic), color 0.35s var(--ease-cinematic);
+}
+.btn-secondary:hover {
+  border-color: var(--ink);
+}
+
+/* ─── Scroll Indicator ──────────────────────────────────── */
+@keyframes scrollDown {
+  0%   { transform: translateY(0); opacity: 1; }
+  80%  { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+.scroll-dot {
+  animation: scrollDown 2.2s ease-in-out infinite;
+}
+
+/* ─── Responsive typography ─────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --font-hero: clamp(3rem, 14vw, 5.5rem);
+    --font-title: clamp(1.9rem, 8vw, 3rem);
+  }
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-dot {
+    animation: none;
+  }
+}
