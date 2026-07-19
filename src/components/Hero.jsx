@@ -5,6 +5,19 @@ import { motion, useReducedMotion } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1];
 
+// The <h1> runs at leading 0.92, which is tighter than Instrument Serif's
+// descenders, so an unpadded overflow:hidden mask cuts the tail off the "p" in
+// "Nepal". Same fix as RevealText: pad the mask's bottom edge, cancel it with a
+// negative margin so the layout is unchanged, and start the slide below 100% so
+// the text is still fully hidden inside the now-taller box.
+const HERO_DESCENDER_ROOM = '0.28em';
+const HERO_HIDDEN_Y = '145%';
+const HERO_LINE_MASK = {
+  overflow: 'hidden',
+  paddingBottom: HERO_DESCENDER_ROOM,
+  marginBottom: `-${HERO_DESCENDER_ROOM}`,
+};
+
 export default function Hero() {
   const reduceMotion = useReducedMotion();
 
@@ -64,20 +77,20 @@ export default function Hero() {
             style={{ fontSize: 'var(--font-hero)', lineHeight: 0.92 }}
             aria-label="Sacred Nepal"
           >
-            <div style={{ overflow: 'hidden' }} aria-hidden="true">
+            <div style={HERO_LINE_MASK} aria-hidden="true">
               <motion.span
                 style={{ display: 'block' }}
-                initial={reduceMotion ? false : { y: '100%' }}
+                initial={reduceMotion ? false : { y: HERO_HIDDEN_Y }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
               >
                 Sacred
               </motion.span>
             </div>
-            <div style={{ overflow: 'hidden' }} aria-hidden="true">
+            <div style={HERO_LINE_MASK} aria-hidden="true">
               <motion.span
                 style={{ display: 'block' }}
-                initial={reduceMotion ? false : { y: '100%' }}
+                initial={reduceMotion ? false : { y: HERO_HIDDEN_Y }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.62, ease: EASE }}
               >
