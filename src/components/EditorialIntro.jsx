@@ -10,26 +10,42 @@ export default function EditorialIntro() {
     <section className="relative bg-parchment py-20 lg:py-40 px-6 lg:px-12">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-7">
-            <h2 className="font-display text-ink leading-[0.98]" style={{ fontSize: 'var(--font-title)' }}>
-              <RevealText as="span" className="block">
-                The Journey
-              </RevealText>
-              <RevealText as="span" className="block text-saffron" delay={0.12}>
-                Through Stone &amp; Spirit
-              </RevealText>
-            </h2>
 
-            <FadeIn
-              as="p"
-              delay={0.25}
-              className="font-sans text-ink mt-9 max-w-xl"
-              style={{ fontSize: 'var(--font-body)', lineHeight: 1.75 }}
-            >
-              Five sacred sites. Two faiths woven through one valley and one high desert. This is a
-              slow passage through temples that have never stopped being used — where devotion
-              isn&rsquo;t a memory on display, but a daily practice carried out in smoke, bell, and
-              stone.
+          <div className="lg:col-span-7 flex flex-col justify-between" style={{ minHeight: 'min(80svh, 680px)' }}>
+            <div>
+              <h2 className="font-display text-ink leading-[0.98]" style={{ fontSize: 'var(--font-title)' }}>
+                <RevealText as="span" className="block">
+                  The Journey
+                </RevealText>
+                <RevealText as="span" className="block text-saffron" delay={0.12}>
+                  Through Stone &amp; Spirit
+                </RevealText>
+              </h2>
+
+              <FadeIn
+                as="p"
+                delay={0.25}
+                className="font-sans text-ink mt-9 max-w-xl"
+                style={{ fontSize: 'var(--font-body)', lineHeight: 1.75 }}
+              >
+                Five sacred sites. Two faiths woven through one valley and one high desert. This is a
+                slow passage through temples that have never stopped being used — where devotion
+                isn&rsquo;t a memory on display, but a daily practice carried out in smoke, bell, and
+                stone.
+              </FadeIn>
+            </div>
+
+            <FadeIn delay={0.4} className="hidden lg:block mt-auto pt-12">
+              <blockquote
+                className="font-display italic text-ink"
+                style={{ fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)', lineHeight: 1.25 }}
+              >
+                &ldquo;Here, faith is not confined to temples.
+                <br />
+                It moves through streets, mountains,
+                <br />
+                smoke and prayer.&rdquo;
+              </blockquote>
             </FadeIn>
           </div>
 
@@ -64,10 +80,11 @@ export default function EditorialIntro() {
           </div>
         </div>
 
-        <FadeIn delay={0.1} className="mt-16 lg:mt-32 lg:ml-24 max-w-3xl">
+        {/* Mobile-only quote — shown below the stacked image on small screens */}
+        <FadeIn delay={0.3} className="lg:hidden mt-10">
           <blockquote
             className="font-display italic text-ink"
-            style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: 1.25 }}
+            style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', lineHeight: 1.3 }}
           >
             &ldquo;Here, faith is not confined to temples.
             <br />
